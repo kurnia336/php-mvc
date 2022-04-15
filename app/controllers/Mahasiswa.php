@@ -14,6 +14,7 @@ class Mahasiswa extends Controller {
     {
         $data['judul'] = 'Detail Mahasiswa';
         $data['mhs'] = $this->model('Mahasiswa_model')->getMahasiswaById($id);
+        $data['krs'] = $this->model('Krs_model')->getMatkulById($id);
         $this->view('templates/header', $data);
         $this->view('mahasiswa/detail', $data);
         $this->view('templates/footer');
@@ -22,11 +23,11 @@ class Mahasiswa extends Controller {
     public function tambah()
     {
         if( $this->model('Mahasiswa_model')->tambahDataMahasiswa($_POST) > 0 ) {
-            Flasher::setFlash('berhasil', 'ditambahkan', 'success');
+            Flasher::setFlash('Mahasiswa berhasil', 'ditambahkan', 'success');
             header('Location: ' . BASEURL . '/mahasiswa');
             exit;
         } else {
-            Flasher::setFlash('gagal', 'ditambahkan', 'danger');
+            Flasher::setFlash('Mahasiswa gagal', 'ditambahkan', 'danger');
             header('Location: ' . BASEURL . '/mahasiswa');
             exit;
         }
@@ -35,11 +36,11 @@ class Mahasiswa extends Controller {
     public function hapus($id)
     {
         if( $this->model('Mahasiswa_model')->hapusDataMahasiswa($id) > 0 ) {
-            Flasher::setFlash('berhasil', 'dihapus', 'success');
+            Flasher::setFlash('Mahasiswa berhasil', 'dihapus', 'success');
             header('Location: ' . BASEURL . '/mahasiswa');
             exit;
         } else {
-            Flasher::setFlash('gagal', 'dihapus', 'danger');
+            Flasher::setFlash('Mahasiswa gagal', 'dihapus', 'danger');
             header('Location: ' . BASEURL . '/mahasiswa');
             exit;
         }
@@ -53,11 +54,11 @@ class Mahasiswa extends Controller {
     public function ubah()
     {
         if( $this->model('Mahasiswa_model')->ubahDataMahasiswa($_POST) > 0 ) {
-            Flasher::setFlash('berhasil', 'diubah', 'success');
+            Flasher::setFlash('Mahasiswa berhasil', 'diubah', 'success');
             header('Location: ' . BASEURL . '/mahasiswa');
             exit;
         } else {
-            Flasher::setFlash('gagal', 'diubah', 'danger');
+            Flasher::setFlash('Mahasiswa gagal', 'diubah', 'danger');
             header('Location: ' . BASEURL . '/mahasiswa');
             exit;
         } 

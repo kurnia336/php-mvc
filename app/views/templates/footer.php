@@ -19,12 +19,12 @@
 
             $('#formModalLabel').html('Ubah Data Mahasiswa');
             $('.modal-footer button[type=submit]').html('Ubah Data');
-            $('.modal-body form').attr('action', '<?= BASE_URL; ?>/mahasiswa/ubah');
+            $('.modal-body form').attr('action', '<?= BASEURL; ?>/mahasiswa/ubah');
 
             const id = $(this).data('id');
 
             $.ajax({
-                url: '<?= BASE_URL; ?>/mahasiswa/getubah',
+                url: '<?= BASEURL; ?>/mahasiswa/getubah',
                 data: {
                     id: id
                 },
@@ -36,6 +36,42 @@
                     $('#email').val(data.email);
                     $('#jurusan').val(data.jurusan);
                     $('#id').val(data.id);
+                }
+            });
+
+        });
+
+        $('.tombolTambahDataMatkul').on('click', function() {
+            $('#formModalLabel').html('Tambah Data Mata Kuliah');
+            $('.modal-footer button[type=submit]').html('Tambah Data');
+            $('#kode_matkul').val('');
+            $('#matkul').val('');
+            $('#sks').val('');
+            $('#semester').val('');
+            $('#id_matkul').val('');
+        });
+
+        $('.tampilModalUbahMatkul').on('click', function() {
+
+            $('#formModalLabel').html('Ubah Data Mata Kuliah');
+            $('.modal-footer button[type=submit]').html('Ubah Data');
+            $('.modal-body form').attr('action', '<?= BASEURL; ?>/matkul/ubah');
+
+            const id = $(this).data('id');
+
+            $.ajax({
+                url: '<?= BASEURL; ?>/matkul/getubah',
+                data: {
+                    id_matkul: id
+                },
+                method: 'post',
+                dataType: 'json',
+                success: function(data) {
+                    $('#kode_matkul').val(data.kode_matkul);
+                    $('#matkul').val(data.matkul);
+                    $('#sks').val(data.sks);
+                    $('#semester').val(data.semester);
+                    $('#id_matkul').val(data.id_matkul);
                 }
             });
 
